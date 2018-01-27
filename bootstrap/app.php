@@ -27,6 +27,11 @@ $app = new Laravel\Lumen\Application(
 
  $app->withEloquent();
 
+
+if (!class_exists('Zipper')) {
+    class_alias('Chumper\Zipper\Zipper', 'Zipper');
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -79,6 +84,7 @@ $app->singleton(
 */
 
  $app->register(App\Providers\AppServiceProvider::class);
+ $app->register('Chumper\Zipper\ZipperServiceProvider');
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 

@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 class ImageController extends Controller {
 
-    const MODEL = "App\Image";
+    const MODEL = "App\Models\Image";
 
     use RESTActions;
-
+    
 }

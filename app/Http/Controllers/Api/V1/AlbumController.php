@@ -4,7 +4,7 @@ use App\Http\Controllers\Controller;
 
 class AlbumController extends Controller {
 
-    const MODEL = "App\Album";
+    const MODEL = "App\Models\Album";
 
     use RESTActions;
 

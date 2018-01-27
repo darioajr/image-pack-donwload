@@ -26,6 +26,7 @@ $router->group(['prefix' => 'api/v1'], function($router){
 
     $router->get('image', 'Api\V1\ImageController@all');
     $router->get('image/{id}', 'Api\V1\ImageController@get');
+    
     //$router->post('image', 'Api\V1\ImageController@add');
     //$router->put('image/{id}', 'Api\V1\ImageController@put');
     //$router->delete('image/{id}', 'Api\V1\ImageController@remove');
