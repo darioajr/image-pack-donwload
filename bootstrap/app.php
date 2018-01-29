@@ -84,7 +84,6 @@ $app->singleton(
 */
 
  $app->register(App\Providers\AppServiceProvider::class);
- $app->register('Chumper\Zipper\ZipperServiceProvider');
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
@@ -103,6 +102,14 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
+});
+
+$app->singleton('zipper', function ($app) {
+    return $app->loadComponent(
+        'zipper',
+        Chumper\Zipper\ZipperServiceProvider::class,
+        'zipper'
+    );
 });
 
 return $app;
