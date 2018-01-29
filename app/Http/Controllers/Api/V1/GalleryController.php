@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use Chumper\Zipper\Zipper;
 
 class GalleryController extends Controller {
 
@@ -19,11 +20,17 @@ class GalleryController extends Controller {
         $a = self::ALBUM;
         $album = $a::find($gallery->album_id);
     
-        $files = glob(public_path($album->name.'/galleries/'.$gallery->name .'/*'));
+        $folder_path = public_path('albums/'.$album->name.'/galleries/'.$gallery->name);
+        $files = glob($folder_path .'/*');
+        
         $filename = $album->name .'_'. $gallery->name .'_'. uniqid().'.zip';
-        Zipper::make(public_path('download/'.$filename))->add($files);
+
+        $zipper = new Zipper;
+        $zipper->make(public_path('download/'.$filename))->add($files)->close();
+        //adicionar aqui o arquivo indice
+        //Zipper::make(public_path('download/'.$filename))->add($files);
     
-        return response()->download(public_path('download/'.$filename)); 
+        return response()->download(public_path('download/'.$filename))->deleteFileAfterSend(true);; 
     }
 
     

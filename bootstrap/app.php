@@ -28,11 +28,7 @@ $app = new Laravel\Lumen\Application(
  $app->withEloquent();
 
 
-if (!class_exists('Zipper')) {
-    class_alias('Chumper\Zipper\Zipper', 'Zipper');
-}
-
-/*
+ /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
 |--------------------------------------------------------------------------
@@ -68,9 +64,9 @@ $app->singleton(
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+ $app->routeMiddleware([
+     'auth' => App\Http\Middleware\Authenticate::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +80,7 @@ $app->singleton(
 */
 
  $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
@@ -111,5 +107,23 @@ $app->singleton('zipper', function ($app) {
         'zipper'
     );
 });
+
+if (!class_exists('Zipper')) {
+    class_alias('Chumper\Zipper\Zipper', 'Zipper');
+}
+
+if (!function_exists('public_path')) {
+    /**
+     * Return the path to public dir
+     *
+     * @param null $path
+     *
+     * @return string
+     */
+    function public_path($path = null)
+    {
+        return app()->basePath('public/'.$path);
+    }
+}
 
 return $app;

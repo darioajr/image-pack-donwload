@@ -4,10 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model {
 
-    protected $fillable = ["name", "album_id"];
+    protected $fillable = ["name", "folder_path", "album_id"];
 
     public static $rules = [
         "name" => "required",
+        "folder_path" => "required",
         "albums_id" => "required|numeric",
     ];
 

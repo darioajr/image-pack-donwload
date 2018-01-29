@@ -15,9 +15,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-//$app->get("api/v{version}/users", function ($version) use ($app) {
-//    return $app->make("App\Api\V{$version}\Controllers\UserController")->show();
-//});
+
 
 $router->group(['prefix' => 'api/v1'], function($router){
     /**
@@ -36,6 +34,9 @@ $router->group(['prefix' => 'api/v1'], function($router){
      */
     $router->get('gallery', 'Api\V1\GalleryController@all');
     $router->get('gallery/{id}', 'Api\V1\GalleryController@get');
+    $router->get('gallery/{id}/zip', 'Api\V1\GalleryController@zip');
+    $router->get('gallery/{name}', 'Api\V1\GalleryController@name');
+    $router->get('gallery/{name}/zip', 'Api\V1\GalleryController@nameZip');
     //$router->post('gallery', 'Api\V1\GalleryController@add');
     //$router->put('gallery/{id}', 'Api\V1\GalleryController@put');
     //$router->delete('gallery/{id}', 'Api\V1\GalleryController@remove');

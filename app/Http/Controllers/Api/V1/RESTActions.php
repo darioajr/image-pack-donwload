@@ -20,10 +20,6 @@ trait RESTActions {
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
         return $this->respond(Response::HTTP_OK, $model);
-    
-        //return response()->download($pathToFile);
-
-        //return response()->download($pathToFile, $name, $headers);    
     }
 
     public function add(Request $request)

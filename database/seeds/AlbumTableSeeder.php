@@ -13,10 +13,10 @@ class AlbumTableSeeder extends Seeder
     public function run()
     {
         DB::table('albums')->insert([
-            ['name' => 'dzarm', 'folder_path' => 'dzarm'],
-            ['name' => 'hering', 'folder_path' => 'hering'],
-            ['name' => 'heringkids', 'folder_path' => 'heringkids'],
-            ['name' => 'puc', 'folder_path' => 'puc'],
+            ['name' => 'dzarm', 'folder_path' => public_path('albums/dzarm')],
+            ['name' => 'hering', 'folder_path' => public_path('albums/hering')],
+            ['name' => 'heringkids', 'folder_path' => public_path('albums/heringkids')],
+            ['name' => 'puc', 'folder_path' => public_path('albums/puc')],
         ]);
     }
 }

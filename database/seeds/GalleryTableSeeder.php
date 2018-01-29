@@ -13,8 +13,8 @@ class GalleryTableSeeder extends Seeder
     public function run()
     {
         DB::table('galleries')->insert([
-            ['name' => 'inverno_feminino_2018','album_id' => 2],
-            ['name' => 'verao_masculino_2018','album_id' => 2],
+            ['name' => '2018_inverno_basico_feminino','folder_path' => public_path('albums/hering/galleries/2018_inverno_basico_feminino'),'album_id' => 2],
+            ['name' => '2018_inverno_basico_masculino','folder_path' => public_path('albums/hering/galleries/2018_inverno_basico_masculino'),'album_id' => 2],
         ]);
     }
 }
