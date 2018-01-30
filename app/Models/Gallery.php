@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @SWG\Definition(required={"name", "folder_path", "albums_id"}, type="object", @SWG\Xml(name="Gallery"))
+ */
 class Gallery extends Model {
 
     protected $fillable = ["name", "folder_path", "album_id"];

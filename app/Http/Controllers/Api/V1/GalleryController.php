@@ -10,6 +10,41 @@ class GalleryController extends Controller {
 
     use RESTActions;
 
+    /**
+     * @SWG\Get(
+     *     path="/gallery/{id}/zip",
+     *     summary="Get image info ",
+     *     tags={"gallery"},
+     *     description="Baixar pacote de imagens pelo Id da galeria.",
+     *     operationId="zip",
+     *     produces={"application/xml", "application/json"},
+     *     @SWG\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Código da Galeria",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @SWG\Schema(
+     *             type="array",
+     *             @SWG\Items(ref="#/definitions/Gallery")
+     *         ),
+     *     ),
+     *     @SWG\Response(
+     *         response="400",
+     *         description="Invalid tag value",
+     *     ),
+     *     security={
+     *         {
+     *             "pim_auth": {"write:galleries", "read:galleries"}
+     *         }
+     *     },
+     * )
+     */
     public function zip($id)
     {
         $g = self::MODEL;

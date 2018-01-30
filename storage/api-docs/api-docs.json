@@ -1,0 +1,112 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Hering PIM",
+        "description": "Hering PIM descrever aqui o projeto.",
+        "termsOfService": "http://ciahering.com.br/terms/",
+        "contact": {
+            "email": "liliane.heiden@ciahering.com.br"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "host": "hering-image-api.test",
+    "basePath": "/api/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/gallery/{id}/zip": {
+            "get": {
+                "tags": [
+                    "gallery"
+                ],
+                "summary": "Get image info ",
+                "description": "Baixar pacote de imagens pelo Id da galeria.",
+                "operationId": "zip",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "C\u00f3digo da Galeria",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Gallery"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid tag value"
+                    }
+                },
+                "security": [
+                    {
+                        "pim_auth": [
+                            "write:galleries",
+                            "read:galleries"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Album": {
+            "required": [
+                "name",
+                "folder_path"
+            ],
+            "type": "object",
+            "xml": {
+                "name": "Album"
+            }
+        },
+        "Gallery": {
+            "required": [
+                "name",
+                "folder_path",
+                "albums_id"
+            ],
+            "type": "object",
+            "xml": {
+                "name": "Gallery"
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        },
+        "pim_auth": {
+            "type": "oauth2",
+            "flow": "implicit",
+            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+            "scopes": {
+                "read:pets": "read your pets",
+                "write:pets": "modify pets in your account"
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Utilizamos nossa documenta\u00e7\u00e3o no padr\u00e3o Swagger",
+        "url": "http://swagger.io"
+    }
+}
