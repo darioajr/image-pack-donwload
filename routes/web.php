@@ -15,9 +15,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-
-
-$router->group(['prefix' => 'api/v1'], function($router){
+$router->group(['middleware' => 'auth:api', 'prefix' => 'api/v1'], function($router){
     /**
      * Imagem for resource task
      */
@@ -56,6 +54,8 @@ $router->group(['prefix' => 'api/v1'], function($router){
     //$router->delete('album/{id}', 'Api\V1\AlbumController@remove');
 
 });
+
+
 
 
 

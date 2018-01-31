@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Hering PIM",
-        "description": "Hering PIM descrever aqui o projeto.",
+        "title": "Hering PIM API",
+        "description": " A Hering PIM API foi desenvolvida para clientes que tenham a necessidade de integrar seus sistemas operacionais e e-coomerce com o Hering, automatizando o consumo e manuten\u00e7\u00e3o de dados da plataforma. Para tanto, s\u00e3o listados abaixo servi\u00e7os (endpoints) baseados em RESTful JSON, para cada tipo de entidade a ser manipulada.\\n\\nEste conte\u00fado \u00e9 direcionado para desenvolvedores e profissionais da \u00e1rea de sistemas de informa\u00e7\u00e3o.\\n\\nSeguran\u00e7a e Autentica\u00e7\u00e3o\\nPor raz\u00f5es de seguran\u00e7a, para ter \u00eaxito ao realizar uma requisi\u00e7\u00e3o para a Hering API, a autentica\u00e7\u00e3o \u00e9 necess\u00e1ria.\\n\\nA autentica\u00e7\u00e3o segue o padr\u00e3o de seguran\u00e7a OAuth2, necessitando dois par\u00e2metros: Client-ID e Client-Secret.\\n\\nEstes par\u00e2metros devem ser obtidos por um usu\u00e1rio administrador a partir da plataforma Hering, acessando Configura\u00e7\u00f5es > API de Integra\u00e7\u00e3o.\\n\\nA partir da obten\u00e7\u00e3o destes par\u00e2metros, deve-se utilizar a URL abaixo para obten\u00e7\u00e3o do Token de autentica\u00e7\u00e3o a ser enviado no HEADER de cada requisi\u00e7\u00e3o \u00e0 API.\\n\\nhttp://hering-image-api.test/oauth/token?grant_type=client_credentials&client_id=<CLIENT-ID>&client_secret=<CLIENT-SECRET>\\n\\n",
         "termsOfService": "http://ciahering.com.br/terms/",
         "contact": {
             "email": "liliane.heiden@ciahering.com.br"
@@ -90,18 +90,13 @@
         }
     },
     "securityDefinitions": {
-        "api_key": {
-            "type": "apiKey",
-            "name": "api_key",
-            "in": "header"
-        },
         "pim_auth": {
             "type": "oauth2",
-            "flow": "implicit",
-            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+            "flow": "accessCode",
+            "tokenUrl": "http://hering-image-api.test/oauth/token",
             "scopes": {
-                "read:pets": "read your pets",
-                "write:pets": "modify pets in your account"
+                "read:basic": "Basic user scope",
+                "write:admin": "Admin user scope"
             }
         }
     },

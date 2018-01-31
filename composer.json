@@ -10,7 +10,11 @@
         "vlucas/phpdotenv": "~2.2",
         "wn/lumen-generators": "^1.3",
         "chumper/zipper": "^1.0",
-        "darkaonline/swagger-lume": "5.5.*"
+        "darkaonline/swagger-lume": "5.5.*",
+        "dusterio/lumen-passport": "^0.2.4",
+        "barryvdh/laravel-cors": "^0.11.0",
+        "laravel/passport": "^4.0",
+        "appzcoder/lumen-routes-list": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

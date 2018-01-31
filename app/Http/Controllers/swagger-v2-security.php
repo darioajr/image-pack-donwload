@@ -1,23 +1,16 @@
 <?php
-/**
- * @SWG\SecurityScheme(
- *   securityDefinition="api_key",
- *   type="apiKey",
- *   in="header",
- *   name="api_key"
- * )
- */
 
 /**
  * @SWG\SecurityScheme(
  *   securityDefinition="pim_auth",
  *   type="oauth2",
- *   authorizationUrl="http://petstore.swagger.io/oauth/dialog",
- *   flow="implicit",
+ *   tokenUrl="http://hering-image-api.test/oauth/token",
+ *   flow="accessCode",
  *   scopes={
- *     "read:pets": "read your pets",
- *     "write:pets": "modify pets in your account"
+ *     "read:basic": "Basic user scope",
+ *     "write:admin": "Admin user scope"
  *   }
  * )
  */
+ 
 ?>

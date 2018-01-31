@@ -19,9 +19,9 @@ class UserTableSeeder extends Seeder
         $senha = Password::getRepository()->createNewTokenKey();
 
         DB::table('galleries')->insert([
-            ['name' => 'Administrador do Sistema', 'username' => 'admin','email' => 'darioajr@gmail.com','password' => 'Hering1880'],
-            ['name' => 'Usuário 1', 'username' => 'user1','email' => 'darioajr@gmail.com','password' => Password::getRepository()->createNewTokenKey()],
-            ['name' => 'Usuário 2', 'username' => 'user2','email' => 'darioajr@gmail.com','password' => Password::getRepository()->createNewTokenKey()],
+            ['name' => 'Administrador do Sistema', 'email' => 'darioajr@gmail.com','password' => Password::getRepository()->createNewTokenKey()],
+            ['name' => 'Usuário 1', 'email' => 'darioajr1@gmail.com','password' => Password::getRepository()->createNewTokenKey()],
+            ['name' => 'Usuário 2', 'email' => 'darioajr2@gmail.com','password' => Password::getRepository()->createNewTokenKey()],
         ]);
     }
 }
