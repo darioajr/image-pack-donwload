@@ -34,8 +34,7 @@ class AuthServiceProvider extends ServiceProvider
 
         
         Passport::tokensCan([
-            'admin' => 'Admin user scope',
-            'user' => 'Basic user scope',
+            'leitura' => 'Somente Leitura',
         ]);
 
         LumenPassport::routes($this->app);

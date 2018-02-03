@@ -2,14 +2,11 @@
 
 /**
  * @SWG\SecurityScheme(
- *   securityDefinition="pim_auth",
+ *   securityDefinition="passport",
  *   type="oauth2",
- *   tokenUrl="http://hering-image-api.test/oauth/token",
- *   flow="accessCode",
- *   scopes={
- *     "read:basic": "Basic user scope",
- *     "write:admin": "Admin user scope"
- *   }
+ *   tokenUrl="/oauth/token",
+ *   flow="password",
+ *   scopes={}
  * )
  */
  

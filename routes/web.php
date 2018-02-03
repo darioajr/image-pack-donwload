@@ -34,7 +34,8 @@ $router->group(['middleware' => 'auth:api', 'prefix' => 'api/v1'], function($rou
      */
     $router->get('gallery', 'Api\V1\GalleryController@all');
     $router->get('gallery/{id}', 'Api\V1\GalleryController@get');
-    $router->get('gallery/{id}/{type}', 'Api\V1\GalleryController@getType');
+    $router->get('gallery/{id}/zip', 'Api\V1\GalleryController@getZip');
+    $router->get('gallery/{id}/zipurl', 'Api\V1\GalleryController@getZipUrl');
     $router->get('gallery_name/{name}', 'Api\V1\GalleryController@getName');
     $router->get('gallery_name/{name}/{type}', 'Api\V1\GalleryController@getNameType');
     //$router->post('gallery', 'Api\V1\GalleryController@add');

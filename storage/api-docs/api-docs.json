@@ -64,6 +64,49 @@
                     }
                 ]
             }
+        },
+        "/gallery/{id}/zipurl": {
+            "get": {
+                "tags": [
+                    "gallery"
+                ],
+                "summary": "Get image info ",
+                "description": "Baixar pacote de imagens pelo Id da galeria.",
+                "operationId": "zip",
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "C\u00f3digo da Galeria",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Gallery"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid tag value"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
         }
     },
     "definitions": {
@@ -75,6 +118,16 @@
             "type": "object",
             "xml": {
                 "name": "Album"
+            }
+        },
+        "Download": {
+            "required": [
+                "url",
+                "parent"
+            ],
+            "type": "object",
+            "xml": {
+                "name": "Download"
             }
         },
         "Gallery": {
@@ -90,14 +143,11 @@
         }
     },
     "securityDefinitions": {
-        "pim_auth": {
+        "passport": {
             "type": "oauth2",
-            "flow": "accessCode",
-            "tokenUrl": "http://hering-image-api.test/oauth/token",
-            "scopes": {
-                "read:basic": "Basic user scope",
-                "write:admin": "Admin user scope"
-            }
+            "flow": "password",
+            "tokenUrl": "/oauth/token",
+            "scopes": {}
         }
     },
     "externalDocs": {
