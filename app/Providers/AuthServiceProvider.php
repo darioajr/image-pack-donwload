@@ -32,12 +32,12 @@ class AuthServiceProvider extends ServiceProvider
         // should return either a User instance or null. You're free to obtain
         // the User instance via an API token or any other method necessary.
 
+        
         Passport::tokensCan([
             'admin' => 'Admin user scope',
-            'basic' => 'Basic user scope',
+            'user' => 'Basic user scope',
         ]);
 
-        
         LumenPassport::routes($this->app);
 /*
         $this->app['auth']->viaRequest('api', function ($request) {
