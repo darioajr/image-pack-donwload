@@ -28,8 +28,7 @@
                 "description": "Baixar pacote de imagens pelo Id da galeria.",
                 "operationId": "zip",
                 "produces": [
-                    "application/xml",
-                    "application/json"
+                    "application/zip"
                 ],
                 "parameters": [
                     {
@@ -45,10 +44,7 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Gallery"
-                            }
+                            "type": "file"
                         }
                     },
                     "400": {
@@ -57,10 +53,7 @@
                 },
                 "security": [
                     {
-                        "pim_auth": [
-                            "write:galleries",
-                            "read:galleries"
-                        ]
+                        "passport": []
                     }
                 ]
             }

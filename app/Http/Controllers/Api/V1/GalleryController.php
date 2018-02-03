@@ -21,7 +21,7 @@ class GalleryController extends Controller {
      *     tags={"gallery"},
      *     description="Baixar pacote de imagens pelo Id da galeria.",
      *     operationId="zip",
-     *     produces={"application/xml", "application/json"},
+     *     produces={"application/zip"},
      *     @SWG\Parameter(
      *         name="id",
      *         in="path",
@@ -34,8 +34,7 @@ class GalleryController extends Controller {
      *         response=200,
      *         description="successful operation",
      *         @SWG\Schema(
-     *             type="array",
-     *             @SWG\Items(ref="#/definitions/Gallery")
+     *             type="file"
      *         ),
      *     ),
      *     @SWG\Response(
@@ -43,9 +42,7 @@ class GalleryController extends Controller {
      *         description="Invalid tag value",
      *     ),
      *     security={
-     *         {
-     *             "pim_auth": {"write:galleries", "read:galleries"}
-     *         }
+     *         {"passport": {}},
      *     },
      * )
      */
@@ -66,6 +63,12 @@ class GalleryController extends Controller {
 
         $zipper = new Zipper;
         $zipper->make(public_path('download/'.$filename))->add($files)->close();
+
+        $headers = array(
+            'Content-Type: application/zip',
+        );
+
+        return response()->download(public_path('download/'.$filename), $filename, $headers);
 
     }
 
