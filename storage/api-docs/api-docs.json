@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "Hering PIM API",
-        "description": " A Hering PIM API foi desenvolvida para clientes que tenham a necessidade de integrar seus sistemas operacionais e e-coomerce com o Hering, automatizando o consumo e manuten\u00e7\u00e3o de dados da plataforma. Para tanto, s\u00e3o listados abaixo servi\u00e7os (endpoints) baseados em RESTful JSON, para cada tipo de entidade a ser manipulada.\\n\\nEste conte\u00fado \u00e9 direcionado para desenvolvedores e profissionais da \u00e1rea de sistemas de informa\u00e7\u00e3o.\\n\\nSeguran\u00e7a e Autentica\u00e7\u00e3o\\nPor raz\u00f5es de seguran\u00e7a, para ter \u00eaxito ao realizar uma requisi\u00e7\u00e3o para a Hering API, a autentica\u00e7\u00e3o \u00e9 necess\u00e1ria.\\n\\nA autentica\u00e7\u00e3o segue o padr\u00e3o de seguran\u00e7a OAuth2, necessitando dois par\u00e2metros: Client-ID e Client-Secret.\\n\\nEstes par\u00e2metros devem ser obtidos por um usu\u00e1rio administrador a partir da plataforma Hering, acessando Configura\u00e7\u00f5es > API de Integra\u00e7\u00e3o.\\n\\nA partir da obten\u00e7\u00e3o destes par\u00e2metros, deve-se utilizar a URL abaixo para obten\u00e7\u00e3o do Token de autentica\u00e7\u00e3o a ser enviado no HEADER de cada requisi\u00e7\u00e3o \u00e0 API.\\n\\nhttp://hering-image-api.test/oauth/token?grant_type=client_credentials&client_id=<CLIENT-ID>&client_secret=<CLIENT-SECRET>\\n\\n",
+        "description": " A Hering PIM API foi desenvolvida para clientes que tenham a necessidade de integrar seus sistemas operacionais e e-commerce com a Hering, automatizando o consumo e manuten\u00e7\u00e3o de dados da plataforma. Para tanto, s\u00e3o listados abaixo servi\u00e7os (endpoints) baseados em RESTful JSON, para cada tipo de entidade a ser manipulada.\n          Este conte\u00fado \u00e9 direcionado para desenvolvedores e profissionais da \u00e1rea de sistemas de informa\u00e7\u00e3o.\n          <br>\n          <b>Seguran\u00e7a e Autentica\u00e7\u00e3o</b>\n          Por raz\u00f5es de seguran\u00e7a, para ter \u00eaxito ao realizar uma requisi\u00e7\u00e3o para a Hering API, a autentica\u00e7\u00e3o \u00e9 necess\u00e1ria.\\n\\nA autentica\u00e7\u00e3o segue o padr\u00e3o de seguran\u00e7a OAuth2, necessitando dos seguintes par\u00e2metros: username, password, grant_type, client-id, client-secret.\n          Estes par\u00e2metros devem ser obtidos por um usu\u00e1rio administrador a partir de contato com a Hering.\n          A partir da obten\u00e7\u00e3o destes par\u00e2metros, deve-se utilizar a URL abaixo para obten\u00e7\u00e3o do Token de autentica\u00e7\u00e3o a ser enviado no HEADER de cada requisi\u00e7\u00e3o \u00e0 API:\n    <b>POST /oauth/token HTTP/1.1\n          Host: hering-image-api.test\n          Content-Type: application/x-www-form-urlencoded\n          Accept: application/json\n          Cache-Control: no-cache\n          client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=password&username=<YOUR_EMAIL>&password=<YOUR_PASSWORD></b>",
         "termsOfService": "http://ciahering.com.br/terms/",
         "contact": {
             "email": "liliane.heiden@ciahering.com.br"
@@ -83,88 +83,6 @@
                 ]
             }
         },
-        "/gallery/{id}/zip": {
-            "get": {
-                "tags": [
-                    "gallery"
-                ],
-                "summary": "Get image info ",
-                "description": "Baixar pacote de imagens pelo Id da galeria.",
-                "operationId": "zip",
-                "produces": [
-                    "application/zip"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "C\u00f3digo da Galeria",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "file"
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid tag value"
-                    }
-                },
-                "security": [
-                    {
-                        "passport": []
-                    }
-                ]
-            }
-        },
-        "/gallery/{id}/zipurl": {
-            "get": {
-                "tags": [
-                    "gallery"
-                ],
-                "summary": "Get image info ",
-                "description": "Baixar pacote de imagens pelo Id da galeria.",
-                "operationId": "zip",
-                "produces": [
-                    "application/xml",
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "C\u00f3digo da Galeria",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Gallery"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid tag value"
-                    }
-                },
-                "security": [
-                    {
-                        "passport": []
-                    }
-                ]
-            }
-        },
         "/image/findByName": {
             "get": {
                 "tags": [
@@ -193,7 +111,7 @@
                         "name": "type",
                         "in": "query",
                         "description": "Tipo do retorno",
-                        "required": true,
+                        "required": false,
                         "type": "array",
                         "items": {
                             "type": "string",

@@ -26,8 +26,8 @@ $router->group(['middleware' => 'auth:api', 'prefix' => 'api/v1'], function($rou
     /**
      * Gallery for resource task
      */
-    //$router->get('gallery', 'Api\V1\GalleryController@all');
-    //$router->get('gallery/{id}', 'Api\V1\GalleryController@get');
+    $router->get('gallery', 'Api\V1\GalleryController@all');
+    $router->get('gallery/{id}', 'Api\V1\GalleryController@get');
     //$router->get('gallery/{id}/zip', 'Api\V1\GalleryController@getZip');
     //$router->get('gallery/{id}/zipurl', 'Api\V1\GalleryController@getZipUrl');
     //$router->post('gallery', 'Api\V1\GalleryController@add');
@@ -37,8 +37,8 @@ $router->group(['middleware' => 'auth:api', 'prefix' => 'api/v1'], function($rou
     /**
      * Albums for resource task
      */
-    //$router->get('album', 'Api\V1\AlbumController@all');
-    //$router->get('album/{id}', 'Api\V1\AlbumController@get');
+    $router->get('album', 'Api\V1\AlbumController@all');
+    $router->get('album/{id}', 'Api\V1\AlbumController@get');
     //$router->get('album/{id}/{type}', 'Api\V1\AlbumController@getType');
     //$router->get('album_name/{name}', 'Api\V1\AlbumController@getName');
     //$router->get('album_name/{name}/zip', 'Api\V1\AlbumController@getNameType');

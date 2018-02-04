@@ -80,38 +80,6 @@ class GalleryController extends Controller {
         return $this->respond(Response::HTTP_OK, $model);
     }
 
-    /**
-     * @SWG\Get(
-     *     path="/gallery/{id}/zip",
-     *     summary="Get image info ",
-     *     tags={"gallery"},
-     *     description="Baixar pacote de imagens pelo Id da galeria.",
-     *     operationId="zip",
-     *     produces={"application/zip"},
-     *     @SWG\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Código da Galeria",
-     *         required=true,
-     *         type="integer",
-     *         format="int64"
-     *     ),
-     *     @SWG\Response(
-     *         response=200,
-     *         description="successful operation",
-     *         @SWG\Schema(
-     *             type="file"
-     *         ),
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Invalid tag value",
-     *     ),
-     *     security={
-     *         {"passport": {}},
-     *     },
-     * )
-     */
     public function getZip($id)
     {
         $g = self::MODEL;
@@ -138,39 +106,7 @@ class GalleryController extends Controller {
 
     }
 
-    /**
-     * @SWG\Get(
-     *     path="/gallery/{id}/zipurl",
-     *     summary="Get image info ",
-     *     tags={"gallery"},
-     *     description="Baixar pacote de imagens pelo Id da galeria.",
-     *     operationId="zip",
-     *     produces={"application/xml", "application/json"},
-     *     @SWG\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Código da Galeria",
-     *         required=true,
-     *         type="integer",
-     *         format="int64"
-     *     ),
-     *     @SWG\Response(
-     *         response=200,
-     *         description="successful operation",
-     *         @SWG\Schema(
-     *             type="array",
-     *             @SWG\Items(ref="#/definitions/Gallery")
-     *         ),
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Invalid tag value",
-     *     ),
-     *     security={
-     *         {"passport": {}},
-     *     },
-     * )
-     */
+    
     public function getZipUrl($id)
     {
         $g = self::MODEL;

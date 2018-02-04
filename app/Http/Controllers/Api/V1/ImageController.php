@@ -33,7 +33,7 @@ class ImageController extends Controller {
      *         name="type",
      *         in="query",
      *         description="Tipo do retorno",
-     *         required=true,
+     *         required=false,
      *         type="array",
      *          @SWG\Items(
      *             type="string",
@@ -70,6 +70,10 @@ class ImageController extends Controller {
         $filter = $request->input('filter');
         $type = $request->input('type');
         $imagens = Image::where('name', 'like', "%{$filter}%")->get();
+
+        if(is_null($imagens)){
+            return response()->json(Response::HTTP_NOT_FOUND);
+        }
         
         if ($type == "zip") {
             $filename = uniqid().'.zip';
@@ -86,11 +90,10 @@ class ImageController extends Controller {
             return response()->download(public_path('download/'.$filename), $filename, $headers);
         }
         else {
-            if(is_null($imagens)){
-                foreach ($imagens as $imagem) {
-                    $imagem->file_path = str_replace(public_path('download/'), url('/').'/download/', $imagem->file_path);
-                }
-                return response()->json(Response::HTTP_NOT_FOUND);
+            foreach ($imagens as $imagem) {
+                $old = public_path();
+                $new = url('/').'/';
+                $imagem->file_path = str_replace($old, $new, $imagem->file_path);
             }
             return response()->json($imagens, Response::HTTP_OK);
         }
