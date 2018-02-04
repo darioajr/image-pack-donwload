@@ -15,7 +15,7 @@ $router->get('/', function () use ($router) {
     return redirect('/api/documentation');
 });
 
-$router->group([/*'middleware' => 'auth:api', */'prefix' => 'api/v1'], function($router){
+$router->group(['middleware' => 'auth:api', 'prefix' => 'api/v1'], function($router){
     /**
      * Imagem for resource task
      */
