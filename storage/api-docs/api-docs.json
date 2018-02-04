@@ -19,6 +19,70 @@
         "http"
     ],
     "paths": {
+        "/gallery": {
+            "get": {
+                "tags": [
+                    "gallery"
+                ],
+                "summary": "Listar todas as galerias",
+                "description": "Listar todas as galerias de imagens.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/gallery/{id}": {
+            "get": {
+                "tags": [
+                    "gallery"
+                ],
+                "summary": "Lista galeria",
+                "description": "Lista todas as galerias que contenham o texto pesquisado no nome.",
+                "operationId": "id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "C\u00f3digo da Galeria",
+                        "required": true,
+                        "type": "string",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid tag value"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/gallery/{id}/zip": {
             "get": {
                 "tags": [
@@ -100,6 +164,73 @@
                     }
                 ]
             }
+        },
+        "/image/findByName": {
+            "get": {
+                "tags": [
+                    "image"
+                ],
+                "summary": "Lista imagens pelo nome",
+                "description": "Lista multiplas imagens pelo nome informado, pode ser utilizado nome parcial, e separado por virgula para informar multiplos nomes. Ex.: H21X, H22X, GH7BL1.",
+                "operationId": "findByName",
+                "produces": [
+                    "application/json",
+                    "application/zip"
+                ],
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Nome para o filtro",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Tipo do retorno",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "default": "url",
+                            "enum": [
+                                "url",
+                                "zip"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Image"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
         }
     },
     "definitions": {
@@ -132,6 +263,17 @@
             "type": "object",
             "xml": {
                 "name": "Gallery"
+            }
+        },
+        "Image": {
+            "required": [
+                "name",
+                "file_path",
+                "gallery_id"
+            ],
+            "type": "object",
+            "xml": {
+                "name": "Image"
             }
         }
     },

@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @SWG\Definition(required={"name", "file_path", "gallery_id"}, type="object", @SWG\Xml(name="Image"))
+ */
 class Image extends Model {
 
     protected $fillable = ["name", "file_path", "gallery_id"];
